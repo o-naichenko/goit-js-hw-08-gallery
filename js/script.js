@@ -29,37 +29,24 @@ const GalleryMarkup = createGalleryMarkup(galleryItems);
 
 galleryRef.addEventListener("click", openLightBox);
 
-function openLightBox(event) {
+function closeLightBox(event) {
   event.preventDefault();
-  if (event.target.nodeName !== "IMG") {
-    return;
-  } else {
-    lightBoxImageRef.src = event.target.dataset.source;
-    lightBoxRef.classList.add("is-open");
+  const { code, target } = event;
 
-    window.addEventListener("keydown", toggleImages);
-
-    toggleImages(event);
-  }
-  window.addEventListener("click", closelightBox);
-  window.addEventListener("keydown", closelightBox);
-}
-function closelightBox(event) {
-  event.preventDefault();
-  //console.log(event.key);
   if (
-    event.code !== "Escape" &&
-    event.target !== closelightBoxBtnRef &&
-    event.target !== lightBoxOverlayRef
+    code == "Escape" &&
+    target == closelightBoxBtnRef &&
+    target == lightBoxOverlayRef
   ) {
-    return;
-  } else {
     lightBoxRef.classList.remove("is-open");
     lightBoxImageRef.src = "";
-    window.removeEventListener("click", closelightBox);
-    window.removeEventListener("keydown", closelightBox);
+    window.removeEventListener("click", closeLightBox);
+    window.removeEventListener("keydown", closeLightBox);
     window.removeEventListener("keydown", toggleImages);
   }
+}
+function createGalleryMarkup(array) {
+  return array.map(createGalleryItemMarkup).join("");
 }
 function createGalleryItemMarkup({ original, preview, description }) {
   return `
@@ -73,9 +60,20 @@ function createGalleryItemMarkup({ original, preview, description }) {
     </li>
     `;
 }
-function createGalleryMarkup(ItemsArray) {
-  const GalleryMarkup = ItemsArray.map(createGalleryItemMarkup).join("");
-  return GalleryMarkup;
+function openLightBox(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== "IMG") {
+    return;
+  } else {
+    lightBoxImageRef.src = event.target.dataset.source;
+    lightBoxRef.classList.add("is-open");
+
+    window.addEventListener("keydown", toggleImages);
+
+    toggleImages(event);
+  }
+  window.addEventListener("click", closeLightBox);
+  window.addEventListener("keydown", closeLightBox);
 }
 function toggleImages(event) {
   event.preventDefault();
