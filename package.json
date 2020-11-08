@@ -1,0 +1,29 @@
+{
+  "name": "goit-js-hw-08-gallery",
+  "version": "1.0.0",
+  "description": "[Українська](README.ua.md).**",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/o-naichenko/goit-js-hw-08-gallery.git"
+  },
+  "keywords": [],
+  "author": "c.gaze",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/o-naichenko/goit-js-hw-08-gallery/issues"
+  },
+  "homepage": "https://github.com/o-naichenko/goit-js-hw-08-gallery#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {}
+}
